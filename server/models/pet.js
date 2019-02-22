@@ -16,7 +16,7 @@ module.exports = function () {
         likes:{type:Number}
 
     })
-    PetSchema.plugin(uniqueValidator);
+    // PetSchema.plugin(uniqueValidator);
     PetSchema.plugin(uniqueValidator, { message: 'Pet Name must be unique' });
     mongoose.model('Pet', PetSchema);
 
