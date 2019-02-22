@@ -77,7 +77,7 @@
         </div>
 
         <input class="btn btn-primary" type="submit" value="Edit Pet" />
-        <a href="/" class="ml-2 btn btn-primary">Cancel</a>
+        <a href="/view/{{petToEdit['_id']}}" class="ml-2 btn btn-primary">Cancel</a>
       </form>
       <p>{{ petToEdit | json }}</p>
   </div>
