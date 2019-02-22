@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/authors', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/angular_belt_exam', { useNewUrlParser: true });
 
 var path = require('path');
 var fs = require('fs');
