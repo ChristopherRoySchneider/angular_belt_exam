@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col">
+    <h1>Single Author</h1>
+    <p>Name: {{author['name']}}</p>
+    <a class="ml-2 btn btn-primary" href="/edit/{{author['_id']}}">Edit</a>
+
+    <button
+      class="ml-2 btn btn-primary"
+      (click)="deleteAuthor(author['_id'])"
+    >
+      Delete
+    </button>
+
+  </div>
+</div>

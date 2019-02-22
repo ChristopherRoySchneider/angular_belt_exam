@@ -1,0 +1,28 @@
+
+<div class="row">
+  <div class="col">
+      <h1>Edit Author</h1>
+
+      <div *ngIf="errors">
+          <h3>Validation Errors</h3>
+          <p>{{errors.message}}</p>
+        </div>
+      <form (submit)="putAuthor(authorToEdit)">
+
+        <div class="form-group">
+          <label for="authorToEdit.name">Title</label>
+          <input
+            class="form-control"
+            type="text"
+            id="authorToEdit.name"
+            name="authorToEdit.name"
+            [(ngModel)]="authorToEdit['name']"
+          />
+        </div>
+
+        <input class="btn btn-primary" type="submit" value="Update Author" />
+      </form>
+      <p>{{ authorToEdit | json }}</p>
+  </div>
+</div>
+

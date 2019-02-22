@@ -1,0 +1,24 @@
+<div class="row"><div class="col">
+
+  <h1>New Author</h1>
+  <div *ngIf="errors">
+      <h3>Validation Errors</h3>
+      <p>{{errors.message}}</p>
+    </div>
+      <form (submit)="addAuthor(newAuthor)">
+
+        <div class="form-group">
+          <label for="newAuthor.name">Author Name</label>
+          <input
+            class="form-control"
+            type="text"
+            id="newAuthor.name"
+            name="newAuthor.name"
+            [(ngModel)]="newAuthor.name"
+          />
+        </div>
+
+        <input class="btn btn-primary" type="submit" value="Create Author" />
+      </form>
+      <p>{{ newAuthor | json }}</p>
+</div></div>
