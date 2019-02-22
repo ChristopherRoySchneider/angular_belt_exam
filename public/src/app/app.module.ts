@@ -6,23 +6,23 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 
-import { AuthorsComponent } from './authors/authors.component';
+import { PetsComponent } from './pets/pets.component';
 
-import { NewauthorComponent } from './newauthor/newauthor.component';
+import { NewpetComponent } from './newpet/newpet.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AuthorByIdComponent } from './author-by-id/author-by-id.component';
-import { EditAuthorComponent } from './edit-author/edit-author.component';
+import { PetByIdComponent } from './pet-by-id/pet-by-id.component';
+import { EditPetComponent } from './edit-pet/edit-pet.component';
 
 @NgModule({
   declarations: [
     AppComponent,
 
-    AuthorsComponent,
+    PetsComponent,
 
-    NewauthorComponent,
+    NewpetComponent,
     PageNotFoundComponent,
-    AuthorByIdComponent,
-    EditAuthorComponent
+    PetByIdComponent,
+    EditPetComponent
   ],
   imports: [
     BrowserModule,

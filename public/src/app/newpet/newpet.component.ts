@@ -3,12 +3,12 @@ import { HttpService } from '../http.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-newauthor',
-  templateUrl: './newauthor.component.html',
-  styleUrls: ['./newauthor.component.css']
+  selector: 'app-newpet',
+  templateUrl: './newpet.component.html',
+  styleUrls: ['./newpet.component.css']
 })
-export class NewauthorComponent implements OnInit {
-  newAuthor = {};
+export class NewpetComponent implements OnInit {
+  newPet = {};
   errors = null;
   constructor(
     private _httpService: HttpService,
@@ -21,19 +21,19 @@ export class NewauthorComponent implements OnInit {
       console.log('params', params);
     });
   }
-  addAuthor(newAuthor) {
-    console.log(newAuthor);
-    let observable = this._httpService.addAuthor(newAuthor);
+  addPet(newPet) {
+    console.log(newPet);
+    let observable = this._httpService.addPet(newPet);
     observable.subscribe(data => {
       console.log('posted data', data);
-      // In this example, the array of authors is assigned to the key 'authors' in the data object.
-      // This may be different for you, depending on how you set up your Author API.
+      // In this example, the array of pets is assigned to the key 'pets' in the data object.
+      // This may be different for you, depending on how you set up your Pet API.
       if (data['message'] == 'Error') {
-        console.log('Error saving Author');
+        console.log('Error saving Pet');
         this.errors = data['error'];
         console.log(this.errors);
       } else {
-        this.newAuthor = {};
+        this.newPet = {};
         this._router.navigate(['/']);
         this.errors = null;
       }

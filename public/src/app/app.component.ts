@@ -9,108 +9,108 @@ import { NgForm } from '@angular/forms';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  newAuthor: any;
+  newPet: any;
   title = 'app';
-  showAuthorEditFormId = null;
-  authors = [];
-  authorToEdit = {};
+  showPetEditFormId = null;
+  pets = [];
+  petToEdit = {};
   newRating={};
   constructor(private _httpService: HttpService) {}
   ngOnInit() {
     console.log('ngOnInit');
-    this.getAuthorsFromService();
-    // this.getAuthorByIdFromService();
-    this.newAuthor = {  };
+    this.getPetsFromService();
+    // this.getPetByIdFromService();
+    this.newPet = {  };
   }
 
 
-  getAuthorsFromService() {
-    let observable = this._httpService.getAuthors();
+  getPetsFromService() {
+    let observable = this._httpService.getPets();
     observable.subscribe(data => {
-      console.log('Got our authors the new way!', data);
-      // In this example, the array of authors is assigned to the key 'authors' in the data object.
-      // This may be different for you, depending on how you set up your Author API.
-      this.authors = data['data'];
-      console.log('this.authors', this.authors);
+      console.log('Got our pets the new way!', data);
+      // In this example, the array of pets is assigned to the key 'pets' in the data object.
+      // This may be different for you, depending on how you set up your Pet API.
+      this.pets = data['data'];
+      console.log('this.pets', this.pets);
     });
   }
 
-  getAuthorByIdFromService(id?: string) {
-    let observable = this._httpService.getAuthorById(id);
+  getPetByIdFromService(id?: string) {
+    let observable = this._httpService.getPetById(id);
     observable.subscribe(data => {
-      console.log('Got our author by id the new way!', data);
-      // In this example, the array of authors is assigned to the key 'authors' in the data object.
-      // This may be different for you, depending on how you set up your Author API.
-      this.authorToEdit = data['data'][0];
-      console.log('this.authorToEdit', this.authorToEdit);
+      console.log('Got our pet by id the new way!', data);
+      // In this example, the array of pets is assigned to the key 'pets' in the data object.
+      // This may be different for you, depending on how you set up your Pet API.
+      this.petToEdit = data['data'][0];
+      console.log('this.petToEdit', this.petToEdit);
     });
   }
   onButtonClick(): void {
-    this.getAuthorsFromService();
+    this.getPetsFromService();
     console.log(`Click event is working`);
   }
-  onButtonClickAuthor(id?: string): void {
-    this.getAuthorByIdFromService(id);
-    console.log(`Click event author by id`);
+  onButtonClickPet(id?: string): void {
+    this.getPetByIdFromService(id);
+    console.log(`Click event pet by id`);
   }
   showRatingForm(id: string): void {
-    this.showAuthorEditFormId = id;
+    this.showPetEditFormId = id;
     console.log(`Click event showRatingForm`);
   }
-  onSubmit(newAuthor) {
-    console.log(newAuthor);
-    let observable = this._httpService.addAuthor(newAuthor);
+  onSubmit(newPet) {
+    console.log(newPet);
+    let observable = this._httpService.addPet(newPet);
     observable.subscribe(data => {
       console.log('posted data', data);
-      // In this example, the array of authors is assigned to the key 'authors' in the data object.
-      // This may be different for you, depending on how you set up your Author API.
-      this.newAuthor = { };
-      this.getAuthorsFromService();
+      // In this example, the array of pets is assigned to the key 'pets' in the data object.
+      // This may be different for you, depending on how you set up your Pet API.
+      this.newPet = { };
+      this.getPetsFromService();
     });
   }
-  onSubmitRating( newRating, authorId) {
+  onSubmitRating( newRating, petId) {
     console.log("*newRating",newRating);
-    console.log("*authorId",authorId);
+    console.log("*petId",petId);
 
-    let observable = this._httpService.addRating(authorId,newRating);
+    let observable = this._httpService.addRating(petId,newRating);
     observable.subscribe(data => {
       console.log('put ', data);
 
       this.newRating = { };
-      this.showAuthorEditFormId=null;
-      this.getAuthorsFromService();
-      this.getAuthorByIdFromService(authorId);
+      this.showPetEditFormId=null;
+      this.getPetsFromService();
+      this.getPetByIdFromService(petId);
 
 
     });
   }
 
 
-  deleteAuthor(id: string): void {
-    let observable = this._httpService.deleteAuthor(id);
+  deletePet(id: string): void {
+    let observable = this._httpService.deletePet(id);
     observable.subscribe(data => {
       console.log('deleted item', data);
-      console.log(`delete author by id ${id}`);
-      this.getAuthorsFromService();
+      console.log(`delete pet by id ${id}`);
+      this.getPetsFromService();
     });
   }
-  putAuthor(updatedAuthor) {
-    console.log(updatedAuthor);
-    let observable = this._httpService.putAuthor(updatedAuthor);
+  putPet(updatedPet) {
+    console.log(updatedPet);
+    let observable = this._httpService.putPet(updatedPet);
     observable.subscribe(data => {
       console.log('posted data', data);
-      // In this example, the array of authors is assigned to the key 'authors' in the data object.
-      // This may be different for you, depending on how you set up your Author API.
-      this.authorToEdit = { };
-      this.getAuthorsFromService();
+      // In this example, the array of pets is assigned to the key 'pets' in the data object.
+      // This may be different for you, depending on how you set up your Pet API.
+      this.petToEdit = { };
+      this.getPetsFromService();
     });
   }
   dataFromChild(eventData) {
     console.log('********eventData', eventData);
-    console.log('********pre', this.authorToEdit);
-    this.authorToEdit = eventData;
-    console.log('********post', this.authorToEdit);
-    this.getAuthorsFromService();
+    console.log('********pre', this.petToEdit);
+    this.petToEdit = eventData;
+    console.log('********post', this.petToEdit);
+    this.getPetsFromService();
   }
 
 }

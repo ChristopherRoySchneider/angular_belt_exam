@@ -3,35 +3,35 @@ import { HttpService } from "../http.service";
 import { NgForm } from "@angular/forms";
 
 @Component({
-  selector: "app-authors",
-  templateUrl: "./authors.component.html",
-  styleUrls: ["./authors.component.css"],
+  selector: "app-pets",
+  templateUrl: "./pets.component.html",
+  styleUrls: ["./pets.component.css"],
   encapsulation: ViewEncapsulation.None
 })
-export class AuthorsComponent implements OnInit {
-  newAuthor: any;
+export class PetsComponent implements OnInit {
+  newPet: any;
 
   title = "app";
-  showAuthorEditFormId = null;
-  authors = [];
-  authorToEdit = {};
+  showPetEditFormId = null;
+  pets = [];
+  petToEdit = {};
   newRating = {};
   sortAscending = true;
   sortField = "_id";
   constructor(private _httpService: HttpService) {}
   ngOnInit() {
     console.log("ngOnInit");
-    this.getAuthorsFromService();
-    // this.getAuthorByIdFromService();
-    this.newAuthor = {};
+    this.getPetsFromService();
+    // this.getPetByIdFromService();
+    this.newPet = {};
   }
 
-  getAuthorsFromService() {
-    let observable = this._httpService.getAuthors();
+  getPetsFromService() {
+    let observable = this._httpService.getPets();
     observable.subscribe(data => {
-      console.log("Got our authors the new way!", data);
-      // In this example, the array of authors is assigned to the key 'authors' in the data object.
-      // This may be different for you, depending on how you set up your Author API.
+      console.log("Got our pets the new way!", data);
+      // In this example, the array of pets is assigned to the key 'pets' in the data object.
+      // This may be different for you, depending on how you set up your Pet API.
       var temp = data["data"];
       console.log(typeof temp);
       console.log(JSON.stringify(temp));
@@ -42,6 +42,9 @@ export class AuthorsComponent implements OnInit {
         if (this.sortField == "name") {
           temp = temp.sort((a, b) => (a.name.toUpperCase() < b.name.toUpperCase() ? -1 : 1));
         }
+        if (this.sortField == "type") {
+          temp = temp.sort((a, b) => (a.type.toUpperCase() < b.type.toUpperCase() ? -1 : 1));
+        }
       } else {
         if (this.sortField == "_id") {
           temp = temp.sort((a, b) => (a._id > b._id ? -1 : 1));
@@ -49,31 +52,40 @@ export class AuthorsComponent implements OnInit {
         if (this.sortField == "name") {
           temp = temp.sort((a, b) => (a.name.toUpperCase() > b.name.toUpperCase() ? -1 : 1));
         }
+        if (this.sortField == "type") {
+          temp = temp.sort((a, b) => (a.type.toUpperCase() > b.type.toUpperCase() ? -1 : 1));
+        }
       }
       console.log(temp);
-      this.authors = temp;
-      console.log("this.authors", this.authors);
+      this.pets = temp;
+      console.log("this.pets", this.pets);
     });
   }
 
-  deleteAuthor(id: string): void {
-    let observable = this._httpService.deleteAuthor(id);
+  deletePet(id: string): void {
+    let observable = this._httpService.deletePet(id);
     observable.subscribe(data => {
       console.log("deleted item", data);
-      console.log(`delete author by id ${id}`);
-      this.getAuthorsFromService();
+      console.log(`delete pet by id ${id}`);
+      this.getPetsFromService();
     });
   }
   sortByDate(): void {
     this.sortField = "_id";
     this.changeSortOrder();
-    this.getAuthorsFromService();
+    this.getPetsFromService();
 
   }
   sortByName(): void {
     this.sortField = "name";
     this.changeSortOrder();
-    this.getAuthorsFromService();
+    this.getPetsFromService();
+
+  }
+  sortByType(): void {
+    this.sortField = "type";
+    this.changeSortOrder();
+    this.getPetsFromService();
 
   }
   changeSortOrder() {

@@ -1,22 +1,22 @@
-import { AuthorByIdComponent } from './author-by-id/author-by-id.component';
-import { AuthorsComponent } from './authors/authors.component';
+import { PetByIdComponent } from './pet-by-id/pet-by-id.component';
+import { PetsComponent } from './pets/pets.component';
 // import { AlphaComponent } from './alpha/alpha.component';
 // import { BetaComponent } from './beta/beta.component';
 // import { GammaComponent } from './gamma/gamma.component';
 // import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NewauthorComponent } from './newauthor/newauthor.component';
+import { NewpetComponent } from './newpet/newpet.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { EditAuthorComponent } from './edit-author/edit-author.component';
+import { EditPetComponent } from './edit-pet/edit-pet.component';
 const routes: Routes = [
 
-  { path: 'new',component: NewauthorComponent },
+  { path: 'new',component: NewpetComponent },
   // use a colon and parameter name to include a parameter in the url
-  { path: 'edit/:id', component: EditAuthorComponent },
-  { path: 'view/:id', component: AuthorByIdComponent },
+  { path: 'edit/:id', component: EditPetComponent },
+  { path: 'view/:id', component: PetByIdComponent },
   // redirect to /alpha if there is nothing in the url
-  { path: '', pathMatch: 'full', component: AuthorsComponent },
+  { path: '', pathMatch: 'full', component: PetsComponent },
   // the ** will catch anything that did not match any of the above routes
   { path: '**', component: PageNotFoundComponent }
 ];

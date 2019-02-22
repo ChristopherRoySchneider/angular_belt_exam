@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthorByIdComponent } from './author-by-id.component';
+import { PetByIdComponent } from './pet-by-id.component';
 
-describe('AuthorByIdComponent', () => {
-  let component: AuthorByIdComponent;
-  let fixture: ComponentFixture<AuthorByIdComponent>;
+describe('PetByIdComponent', () => {
+  let component: PetByIdComponent;
+  let fixture: ComponentFixture<PetByIdComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuthorByIdComponent ]
+      declarations: [ PetByIdComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AuthorByIdComponent);
+    fixture = TestBed.createComponent(PetByIdComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
